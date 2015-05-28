@@ -53,6 +53,7 @@ cd ~ vim .bash_profile (只要能编辑就行) 插入新的Python路径
   #Setting PATH for Python 3.3
 
   #The orginal version is saved in .bash_profile.pysave
+  
 PATH="/System/Library/Frameworks/Python.framework/Versions/3.3/bin:${PATH}"
 export PATH
 
