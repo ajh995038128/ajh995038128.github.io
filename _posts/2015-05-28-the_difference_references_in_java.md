@@ -43,7 +43,8 @@ Counter prime = new Counter();//prime 持有一个强引用 line 2
 SoftReference<Counter> soft = new SoftReference<Counter>(prime);// 软引用变量有一个指向line 2倍创建的Counter 对象  
 
 prime = null ; //现在Counter对象只有在jvm特别需要内存的时候才会被回收  
-{% endhighlig
+{% endhighlight %}
+
 让强引用变成null之后，line2创建的Counter对象只有一个不能阻止它被垃圾回收但是能延迟回收的软引用，而在弱引用的情况下会更快。由于软引用和弱引用这个主要不同，软引用更适合于做缓存，而弱引用韩庚适合保存元数据。一个弱引用的例子是WeakHashMap，它是像HashmMap或者TreeMap的其他的Map接口的实现，但是它有一个独一无二的特性:WeakHashMap把它的key包装成弱引用也就是意味着一旦真是对象的强引用被移除，在WeakHashMap内部的弱引用不能保证他们不被垃圾回收。
 虚引用是在java.lang.ref包中可以得到的第三种引用。虚引用用java.lang.ref.PhantomReference类表示。那些虚引用指向的对象可以随时被回收如果gc喜欢。与弱引用和软引用相似的，你可以通过以下代码创建一个虚引用：
 
@@ -53,7 +54,8 @@ DigitalCounter digit = new DigitalCounter();//digit 引用变量有一个强引�
 PhantomReference<DigitalCounter> phantom = new PhantomReference<DigitalCounter>(digit);//line3 创建的对象的虚引用  
 
 digit = null;  
-{% endhighlig
+{% endhighlight %}
+
 一旦你移除了强引用，由于只有一个不能阻止被回收的虚引用指向他，line3创建的对象能随时被垃圾回收。
 除了，熟知的WeakReference，SoftReference，PhantomReference和WeakHashMap，还有一个叫ReferenceQueue的类很值得了解。当创建任何弱引用，软引用和虚引用时，你可以提供一个ReferenceQueue的实例，如下面代码展示的一样：
 
