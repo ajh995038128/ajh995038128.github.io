@@ -57,16 +57,16 @@ digit = null;
 一旦你移除了强引用，由于只有一个不能阻止被回收的虚引用指向他，line3创建的对象能随时被垃圾回收。
 除了，熟知的WeakReference，SoftReference，PhantomReference和WeakHashMap，还有一个叫ReferenceQueue的类很值得了解。当创建任何弱引用，软引用和虚引用时，你可以提供一个ReferenceQueue的实例，如下面代码展示的一样：
 
-
+{% highlight java%}
 ReferenceQueue reQueue= new ReferenceQueue();// 引用会被保存在这个队列中来清理  
 
 DigitalCounter = digit =new DigitalCounter();  
 
 PhantomReference<DigitalCounter> phantom = new PhantomReference<DigitalCounter>(digit,reQueue);  
-
+{% endhighlight %}
 
 引用的实例会被追加到ReferenceQueue里，你可以使用它进行任何清理通过poll 引用队列，一个对象的生命周期通过下面的图能得到很好的总结：
-  [对象生命周期]({{ site.url }}/images/20150526201834341.png)
+  ![对象生命周期]({{ site.url }}/images/20150526201834341.png)
 这就是java中弱引用和软引用所以的不同了。我们也学习到了一些基本的引用类，如java中的弱引用，软引用和虚引用，还有WeakHashMap，ReferenceQueue.小心使用引用能帮助垃圾回收期更好的工作和得到更好的java内存管理。
 
 谢谢，大家以上就是这篇文章的内容。如果有什么翻译不好的地方欢迎在评论中告诉我。
