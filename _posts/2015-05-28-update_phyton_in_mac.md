@@ -46,13 +46,15 @@ sudo ln -s /System/Library/Frameworks/Python.framework/Versions/3.3/bin/python3.
 最后，更新一下.bash_profile文件
 
 cd ~ vim .bash_profile (只要能编辑就行) 插入新的Python路径
+<pre>
+  <code class="bash">
+    # Setting PATH for Python 3.3
 
-# Setting PATH for Python 3.3
-
-# The orginal version is saved in .bash_profile.pysave
-PATH="/System/Library/Frameworks/Python.framework/Versions/3.3/bin:${PATH}"
-export PATH
-
+    # The orginal version is saved in .bash_profile.pysave
+    PATH="/System/Library/Frameworks/Python.framework/Versions/3.3/bin:${PATH}"
+    export PATH
+  </code>
+</pre>
 打开命令行，输入python，如下：
 
 chenwgtekiMacBook-Pro:~ chenwg$ pythonPython 3.3.2 (v3.3.2:d047928ae3f6, May 13 2013, 13:52:24)[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwinType “help”, “copyright”, “credits” or “license” for more information.>>>
