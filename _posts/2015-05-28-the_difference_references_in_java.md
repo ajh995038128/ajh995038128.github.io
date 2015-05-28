@@ -66,7 +66,9 @@ PhantomReference<DigitalCounter> phantom = new PhantomReference<DigitalCounter>(
 {% endhighlight %}
 
 引用的实例会被追加到ReferenceQueue里，你可以使用它进行任何清理通过poll 引用队列，一个对象的生命周期通过下面的图能得到很好的总结：
+
   ![对象生命周期]({{ site.url }}/images/20150526201834341.png)
+
 这就是java中弱引用和软引用所以的不同了。我们也学习到了一些基本的引用类，如java中的弱引用，软引用和虚引用，还有WeakHashMap，ReferenceQueue.小心使用引用能帮助垃圾回收期更好的工作和得到更好的java内存管理。
 
 谢谢，大家以上就是这篇文章的内容。如果有什么翻译不好的地方欢迎在评论中告诉我。
