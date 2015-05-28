@@ -34,7 +34,7 @@ Counter counter = new Counter(); //强引用 line 1
 WeakReference<Counter> weakCounter = new WeakReference<Counter>（counter）;//弱引用  
 
 counter = null;//现在Counter对象能够被GC回收了  
-｛% endhighlight %｝
+{% endhighlight %}
  现在，一旦你让强引用counter = null，line 1被创建的对象变成了可被GC回收了。因为它没有任何的强引用并且被引用对象weakCounter弱引用不能阻止Counter对象被GC回收。另一方面，如果它被软引用着，Counter对象将不会被回收直到ava虚拟机特别需要内存。软引用在java中用java.lang.ref.SoftReference类表示。你可以通过以下代码创建一个软引用：
 
  {% highlight java %}
@@ -54,7 +54,7 @@ DigitalCounter digit = new DigitalCounter();//digit 引用变量有一个强引�
 PhantomReference<DigitalCounter> phantom = new PhantomReference<DigitalCounter>(digit);//line3 创建的对象的虚引用  
 
 digit = null;  
-｛% endhighlight %｝
+{% endhighlight %}
 一旦你移除了强引用，由于只有一个不能阻止被回收的虚引用指向他，line3创建的对象能随时被垃圾回收。
 除了，熟知的WeakReference，SoftReference，PhantomReference和WeakHashMap，还有一个叫ReferenceQueue的类很值得了解。当创建任何弱引用，软引用和虚引用时，你可以提供一个ReferenceQueue的实例，如下面代码展示的一样：
 
@@ -65,7 +65,7 @@ ReferenceQueue reQueue= new ReferenceQueue();// 引用会被保存在这个队�
 DigitalCounter = digit =new DigitalCounter();  
 
 PhantomReference<DigitalCounter> phantom = new PhantomReference<DigitalCounter>(digit,reQueue);  
-｛% endhighlight %｝
+{% endhighlight %}
 引用的实例会被追加到ReferenceQueue里，你可以使用它进行任何清理通过poll 引用队列，一个对象的生命周期通过下面的图能得到很好的总结：
   [对象生命周期]({{ site.url }}/images/20150526201834341.png)
 这就是java中弱引用和软引用所以的不同了。我们也学习到了一些基本的引用类，如java中的弱引用，软引用和虚引用，还有WeakHashMap，ReferenceQueue.小心使用引用能帮助垃圾回收期更好的工作和得到更好的java内存管理。
