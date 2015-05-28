@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 在java中弱引用，软引用，虚引用和强引用的不同之处
-date: 2015-05-28 11:56:22
+date: 2015-05-28 17:29:22
 categories: java 翻译
 excerpt: java 引用
 ---
