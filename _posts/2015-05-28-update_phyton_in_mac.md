@@ -1,0 +1,58 @@
+---
+layout: post
+title: 在mac中更新python
+---
+mac lion自带的python是2.7版本的，有点儿低，要使用一些应用的时候还需要3.3以上的，这时可以用以下的方法更新mac自带的python。
+
+先去python的官网下载最新的python，并安装好。
+
+现在要删除mac自带的python，如下：
+
+sudo rm -R /System/Library/Frameworks/Python.framework/Versions/2.7
+
+把第一步里安装好的Python目录移到原本系统所持有的目录位置。
+
+sudo mv /Library/Frameworks/Python.framework/Versions/3.3
+
+/System/Library/Frameworks/Python.framework/Versions
+
+第三步，修改文件所属的Group
+设置Group为wheel，原来系统自带的就是这样的。
+
+sudo chown -R root:wheel /System/Library/Frameworks/Python.framework/Versions/3.3
+
+第四步，更新一下Current的Link
+在Versions的目录里有一个Current的link，是指向当前的Python版本，原始是指向系统自带的Python2.7.2，我们把它删除后，link就失效了，所以需要重新链一下
+
+sudo rm /System/Library/Frameworks/Python.framework/Versions/Current
+sudo ln -s /System/Library/Frameworks/Python.framework/Versions/3.3 /System/Library/Frameworks/Python.framework/Versions/Current
+
+第五步，重新链接可执行文件
+
+1) 先把系统原来的执行文件删掉
+
+sudo rm /usr/bin/pydoc
+sudo rm /usr/bin/python
+sudo rm /usr/bin/pythonw
+sudo rm /usr/bin/python-config
+
+2) 建立新的链接
+
+sudo ln -s /System/Library/Frameworks/Python.framework/Versions/3.3/bin/pydoc3.3 /usr/bin/pydoc
+sudo ln -s /System/Library/Frameworks/Python.framework/Versions/3.3/bin/python3.3 /usr/bin/python
+sudo ln -s /System/Library/Frameworks/Python.framework/Versions/3.3/bin/pythonw3.3 /usr/bin/pythonw
+sudo ln -s /System/Library/Frameworks/Python.framework/Versions/3.3/bin/python3.3m-config /usr/bin/python-config
+
+最后，更新一下.bash_profile文件
+
+cd ~ vim .bash_profile (只要能编辑就行) 插入新的Python路径
+
+# Setting PATH for Python 3.3
+
+# The orginal version is saved in .bash_profile.pysave
+PATH="/System/Library/Frameworks/Python.framework/Versions/3.3/bin:${PATH}"
+export PATH
+
+打开命令行，输入python，如下：
+
+chenwgtekiMacBook-Pro:~ chenwg$ pythonPython 3.3.2 (v3.3.2:d047928ae3f6, May 13 2013, 13:52:24)[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwinType “help”, “copyright”, “credits” or “license” for more information.>>>
