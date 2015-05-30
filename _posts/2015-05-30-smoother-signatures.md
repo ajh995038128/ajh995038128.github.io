@@ -1,6 +1,7 @@
 ---
 layout: post
 title: [译]顺畅的签字（上）
+date: 2015-05-30 16:22:05
 categories: android 签字 翻译
 excerpt: android
 ---
@@ -8,7 +9,7 @@ excerpt: android
 这是一篇英语翻译，这是文章中的上篇，原文地址是：![https://corner.squareup.com/2010/07/smooth-signatures.html]({{ https://corner.squareup.com/2010/07/smooth-signatures.html }});
 
 在信用卡支付过程中获取一个签名提高安全性并且降低处理到费用。当你使用Square(注：一个信用卡处理和商业解决方案商)，你用手签名在屏幕上而不是用笔签一张收据：
-  ![图片]({{  }});
+  ![图片]({{ site.url }}/after.png);
 
 这个签名会显示在电子邮件账单上，帮助Square检测和防止骗局。
 
@@ -60,7 +61,7 @@ excerpt: android
  {% endhighlight %}
 
  然而简单的实现，这个方法留了很多需要实现的，这个签名是成坨的而且用户体验不好。
-    ![图片]({{  }});
+ ![图片]({{ site.url }}/before.png);
 
 我们用了两个不同的方式解决这些问题：
   <h3>消失的事件</h3>
@@ -127,7 +128,7 @@ excerpt: android
 利用这些中间事件让签名看起来更加顺滑和更加真实。通过避免不必要的工作提高绘制效率提高了重绘率和让签名感觉响应更快。
 下面就是结果：
 
-![图片]({{ }});
+![图片]({{ site.url }}/after_final.png);
 
 然后，这是最终的代码，去掉了一些辅助特性，如抖动检测：
 {% highlight java %}
@@ -135,15 +136,12 @@ public class SignatureView extends View {
 
 private static final float STROKE_WIDTH = 5f;
 
-/** Need to track this so the dirty region can accommodate the stroke. **/
 private static final float HALF_STROKE_WIDTH = STROKE_WIDTH / 2;
 
 private Paint paint = new Paint();
 private Path path = new Path();
 
-/**
- Optimizes painting by invalidating the smallest possible area.
- **/
+
 private float lastTouchX;
 private float lastTouchY;
 private final RectF dirtyRect = new RectF();
@@ -158,9 +156,7 @@ public SignatureView(Context context, AttributeSet attrs) {
   paint.setStrokeWidth(STROKE_WIDTH);
 }
 
-/**
- * Erases the signature.
- */
+
 public void clear() {
   path.reset();
 
@@ -223,10 +219,7 @@ public boolean onTouchEvent(MotionEvent event) {
   return true;
 }
 
-/**
- * Called when replaying history to ensure the dirty region includes all
- * points.
- */
+
 private void expandDirtyRect(float historicalX, float historicalY) {
   if (historicalX < dirtyRect.left) {
     dirtyRect.left = historicalX;
@@ -240,9 +233,7 @@ private void expandDirtyRect(float historicalX, float historicalY) {
   }
 }
 
-/**
- * Resets the dirty region when the motion event occurs.
- */
+
 private void resetDirtyRect(float eventX, float eventY) {
 
   // The lastTouchX and lastTouchY were set when the ACTION_DOWN
