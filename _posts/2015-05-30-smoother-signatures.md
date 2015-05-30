@@ -6,9 +6,10 @@ categories: android 签字 翻译
 excerpt: android
 ---
 
-这是一篇英语翻译，这是文章中的上篇，原文地址是：![https://corner.squareup.com/2010/07/smooth-signatures.html]({{ https://corner.squareup.com/2010/07/smooth-signatures.html }});
+这是一篇英语翻译，这是文章中的上篇，原文地址是：https://corner.squareup.com/2010/07/smooth-signatures.html;
 
 在信用卡支付过程中获取一个签名提高安全性并且降低处理到费用。当你使用Square(注：一个信用卡处理和商业解决方案商)，你用手签名在屏幕上而不是用笔签一张收据：
+
   ![图片]({{ site.url }}/images/after.png);
 
 这个签名会显示在电子邮件账单上，帮助Square检测和防止骗局。
@@ -31,12 +32,10 @@ excerpt: android
    paint.setStrokeWidth(5f);
  }
 
- @Override
  protected void onDraw(Canvas canvas) {
    canvas.drawPath(path, paint);
  }
 
-@Override
  public boolean onTouchEvent(MotionEvent event) {
    float eventX = event.getX();
    float eventY = event.getY();
@@ -61,6 +60,7 @@ excerpt: android
  {% endhighlight %}
 
  然而简单的实现，这个方法留了很多需要实现的，这个签名是成坨的而且用户体验不好。
+
  ![图片]({{ site.url }}/images/before.png);
 
 我们用了两个不同的方式解决这些问题：
