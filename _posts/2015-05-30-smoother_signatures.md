@@ -6,6 +6,8 @@ categories: android 签字 翻译
 excerpt: android
 ---
 
+
+
 这是一篇英语翻译，这是文章中的上篇，原文地址是：https://corner.squareup.com/2010/07/smooth-signatures.html;
 
 在信用卡支付过程中获取一个签名提高安全性并且降低处理到费用。当你使用Square(注：一个信用卡处理和商业解决方案商)，你用手签名在屏幕上而不是用笔签一张收据：
