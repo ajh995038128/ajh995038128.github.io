@@ -1,9 +1,9 @@
 ---
 layout: post
-title: ［译］在java中弱引用，软引用，虚引用和强引用的不同之处2
-date: 2015-05-28 17:29:22
+title: ［译］顺滑的签字（上）
+date: 2015-05-30 16:42:22
 categories: java 翻译
-excerpt: java 引用
+excerpt: android 自定义View
 ---
 
 
